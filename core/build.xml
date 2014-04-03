@@ -7,9 +7,11 @@
   <taskdef name="mxmlc" classname="flex.ant.MxmlcTask" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
   <taskdef name="compc" classname="flex.ant.CompcTask" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-  <!--完成当前构建任务所需的4个调用，首先是清理，如果bin下面有文件，删除掉；然后是编译，HTML包裹，和ASDoc文档生成。-->
-  <target name="build">
-    <antcall target="compile"/>
+  <target name="build" depends="clean, compile" />
+
+  <target name="clean">
+    <delete file="${OUTPUT_DIR}/swfupload.swf" />
+    <delete file="${OUTPUT_DIR_FP9}/swfupload_fp9.swf" />
   </target>
 
   <!--执行编译，注意debug参数，默认是false，如果您需要开启Debug功能，可以将它设置为true(会增大文件体积)-->
@@ -55,7 +57,14 @@
       <!--引用本地化的库支持-->
       <library-path dir="${FLEX_HOME}/frameworks/locale/${LOCALE}" includes="*" append="true"/>
     </mxmlc>
+  </target>
 
+  <target name="deploy">
+    <copy todir="${SWFUPLOAD_DEMOS_DIR}" overwrite="true" flatten="true">
+      <fileset dir="${basedir}/plugins" includes="*.js" />
+      <file file="${OUTPUT_DIR}/swfupload.swf" />
+      <file file="${OUTPUT_DIR_FP9}/swfupload_fp9.swf" />
+    </copy>
   </target>
 
 </project>
