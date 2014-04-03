@@ -173,7 +173,7 @@ package {
 			}
 
 			var self:SWFUpload = this;
-			Security.allowDomain("*");	// Allow uploading to any domain
+			//Security.allowDomain("*");	// Allow uploading to any domain
 			Security.allowInsecureDomain("*");	// Allow uploading from HTTP to HTTPS and HTTPS to HTTP
 			
 			// Keep Flash Player busy so it doesn't show the "flash script is running slowly" error
@@ -269,7 +269,7 @@ package {
 			this.sizeTimer.start();
 			
 			// Get the movie name
-			this.movieName = decodeURIComponent(root.loaderInfo.parameters.movieName.replace(/[^\w\.-_]/g, ''));
+			this.movieName = decodeURIComponent(root.loaderInfo.parameters.movieName.replace(/[^\w\.\-]/g, ''));
 
 			// **Configure the callbacks**
 			// The JavaScript tracks all the instances of SWFUpload on a page.  We can access the instance
