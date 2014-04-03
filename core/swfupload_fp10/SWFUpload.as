@@ -269,7 +269,7 @@ package {
 			this.sizeTimer.start();
 			
 			// Get the movie name
-			this.movieName = decodeURIComponent(root.loaderInfo.parameters.movieName);
+			this.movieName = decodeURIComponent(root.loaderInfo.parameters.movieName.replace(/[^\w\.-_]/g, ''));
 
 			// **Configure the callbacks**
 			// The JavaScript tracks all the instances of SWFUpload on a page.  We can access the instance
