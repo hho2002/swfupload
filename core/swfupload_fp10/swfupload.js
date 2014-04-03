@@ -929,7 +929,9 @@ SWFUpload.prototype.cleanUp = function () {
 			this.debug("Removing Flash functions hooks (this should only run in IE and should prevent memory leaks)");
 			for (key in movieElement) {
 				try {
-					if (typeof(movieElement[key]) === "function") {
+					// Remove only Flash functions (starts with capital letters).
+					if (typeof(movieElement[key]) === "function" && key.substring(0, 1) <= 'Z') {
+						//console.log('clean: ' + key);
 						movieElement[key] = null;
 					}
 				} catch (ex) {
