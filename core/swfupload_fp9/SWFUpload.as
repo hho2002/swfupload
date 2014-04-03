@@ -1189,7 +1189,7 @@ package {
 			var style:StyleSheet = new StyleSheet();
 			style.parseCSS(this.buttonTextStyle);
 			this.buttonTextField.styleSheet = style;
-			this.buttonTextField.htmlText = this.buttonText;
+			this.buttonTextField.htmlText = '<span class="button-text">' + this.buttonText + '</span>';
 		}
 
 		private function SetButtonTextPadding(left:Number, top:Number):void {

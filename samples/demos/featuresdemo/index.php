@@ -40,8 +40,8 @@
 				button_action : SWFUpload.BUTTON_ACTION.SELECT_FILES,
 				button_cursor : SWFUpload.CURSOR.ARROW,
 				button_placeholder_id : "spanButtonPlaceholder",
-				button_text : '<span class="btnText">Select Files...</span>',
-				button_text_style : ".btnText { font-size: 10; font-weight: bold; font-family: MS Shell Dlg; }",
+				button_text : 'Select Files...',
+				button_text_style : ".button-text { font-size: 10; font-weight: bold; font-family: MS Shell Dlg; }",
 				button_text_top_padding : 3,
 				button_text_left_padding : 100,
 				

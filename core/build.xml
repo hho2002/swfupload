@@ -34,10 +34,11 @@
       </compiler.library-path>
       <!--指定最小player版本-->
       <target-player>10.0.0</target-player>
+      <default-frame-rate>15</default-frame-rate>
+      <default-size width="300" height="300" />
+      <default-background-color>0xFFFFFF</default-background-color>
       <!--引用本地化的库支持-->
       <library-path dir="${FLEX_HOME}/frameworks/locale/${LOCALE}" includes="*" append="true"/>
-      <!--当前项目的库引用位置-->
-      <!--<library-path dir="${LIBS_DIR}" includes="*" append="true"/>//-->
     </mxmlc>
 
     <mxmlc
@@ -54,6 +55,9 @@
       <source-path path-element="${SOURCE_DIR_FP9}"/>
       <!--指定最小player版本-->
       <target-player>9.0.28</target-player>
+      <default-frame-rate>15</default-frame-rate>
+      <default-size width="300" height="300" />
+      <default-background-color>0xFFFFFF</default-background-color>
       <!--引用本地化的库支持-->
       <library-path dir="${FLEX_HOME}/frameworks/locale/${LOCALE}" includes="*" append="true"/>
     </mxmlc>
