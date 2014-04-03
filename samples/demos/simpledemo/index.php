@@ -36,6 +36,7 @@
 				button_text_style: ".theFont { font-size: 16; }",
 				button_text_left_padding: 12,
 				button_text_top_padding: 3,
+				button_window_mode: 'transparent',
 				
 				// The event handler functions are defined in handlers.js
 				swfupload_preload_handler : preLoad,
