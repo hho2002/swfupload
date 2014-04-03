@@ -32,6 +32,8 @@ package {
 	import flash.ui.Mouse;
 	import flash.utils.ByteArray;
 	import flash.utils.Timer;
+	import flash.xml.XMLNode;
+	import flash.xml.XMLNodeType;
 
 	import FileItem;
 	import ExternalCall;
@@ -380,7 +382,8 @@ package {
 			}
 			
 			try {
-				this.SetButtonText(String(decodeURIComponent(root.loaderInfo.parameters.buttonText)));
+				// HTML-escape strings that come from the user, preventing XSS.
+				this.SetButtonText(htmlEscape(String(decodeURIComponent(root.loaderInfo.parameters.buttonText))));
 			} catch (ex:Object) {
 				this.SetButtonText("");
 			}
@@ -1704,6 +1707,10 @@ package {
 				item.removeEventListener(Event.COMPLETE, this.Complete_Handler);
 				item.removeEventListener(DataEvent.UPLOAD_COMPLETE_DATA, this.ServerData_Handler);
 			}
+		}
+
+		public function htmlEscape(str:String):String {
+			return XML( new XMLNode( XMLNodeType.TEXT_NODE, str ) ).toXMLString();
 		}
 
 	}
