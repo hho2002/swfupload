@@ -14,6 +14,7 @@
 			var settings = {
 				flash_url : "../swfupload/swfupload.swf",
 				flash9_url : "../swfupload/swfupload_fp9.swf",
+				use_flash9_url : true,
 				upload_url: "upload.php",
 				post_params: {"PHPSESSID" : "<?php echo session_id(); ?>"},
 				file_size_limit : "100 MB",

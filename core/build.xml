@@ -66,6 +66,7 @@
   <target name="deploy">
     <copy todir="${SWFUPLOAD_DEMOS_DIR}" overwrite="true" flatten="true">
       <fileset dir="${basedir}/plugins" includes="*.js" />
+      <file file="${OUTPUT_DIR}/swfupload.js" />
       <file file="${OUTPUT_DIR}/swfupload.swf" />
       <file file="${OUTPUT_DIR_FP9}/swfupload_fp9.swf" />
     </copy>

@@ -175,6 +175,7 @@ SWFUpload.prototype.initSettings = function (userSettings) {
 	this.ensureDefault("flash_url", "swfupload.swf");
 	this.ensureDefault("flash9_url", "swfupload_fp9.swf");
 	this.ensureDefault("prevent_swf_caching", true);
+	this.ensureDefault("use_flash9_url", false);
 	
 	// Button Settings
 	this.ensureDefault("button_image_url", "");
@@ -243,7 +244,9 @@ SWFUpload.prototype.loadSupport = function () {
 		loading : swfobject.hasFlashPlayerVersion("9.0.28"),
 		imageResize : swfobject.hasFlashPlayerVersion("10.0.0")
 	};
-	
+	if (this.settings.use_flash9_url) {
+		this.support.imageResize = false;
+	}
 };
 
 // Private: loadFlash replaces the button_placeholder element with the flash movie.
