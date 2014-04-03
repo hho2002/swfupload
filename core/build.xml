@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project name="swfupload" default="build" basedir="./">
+  <!--包含属性定义文件build.properties-->
+  <property file="build.properties" />
+
+  <!--定义任务的库引用路径，比如下面我们用到了mxmlc，必须让Ant知道去哪里寻找这个任务的定义，包括类名称和classpath。这里我们配置了4个，实际上用到了3个，即调用mxmlc完成编译，调用html-wrapper对SWF进行HTML包裹，调用asdoc生成代码文档。compc是用来编译库(SWC)文件，这里我们没有用到 -->
+  <taskdef name="mxmlc" classname="flex.ant.MxmlcTask" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+  <taskdef name="compc" classname="flex.ant.CompcTask" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+  <!--完成当前构建任务所需的4个调用，首先是清理，如果bin下面有文件，删除掉；然后是编译，HTML包裹，和ASDoc文档生成。-->
+  <target name="build">
+    <antcall target="compile"/>
+  </target>
+
+  <!--执行编译，注意debug参数，默认是false，如果您需要开启Debug功能，可以将它设置为true(会增大文件体积)-->
+  <target name="compile">
+    <mxmlc
+            file="${SOURCE_DIR}/SWFUpload.as"
+            output="${OUTPUT_DIR}/swfupload.swf"
+            locale="${LOCALE}"
+            static-rsls="true"
+            accessible="true"
+            debug="false"
+        >
+      <!--加载Flex配置文件，如果您有特殊需求（比如要保留自定义的Metadata标签，则可以设置自己定义的Flex配置文件）-->
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <!--设置源代码位置-->
+      <source-path path-element="${SOURCE_DIR}"/>
+      <!--导入外部库文件-->
+      <compiler.library-path dir="${SOURCE_DIR}" append="true">
+        <include name="*.swc" />
+      </compiler.library-path>
+      <!--指定最小player版本-->
+      <target-player>10.0.0</target-player>
+      <!--引用本地化的库支持-->
+      <library-path dir="${FLEX_HOME}/frameworks/locale/${LOCALE}" includes="*" append="true"/>
+      <!--当前项目的库引用位置-->
+      <!--<library-path dir="${LIBS_DIR}" includes="*" append="true"/>//-->
+    </mxmlc>
+
+    <mxmlc
+            file="${SOURCE_DIR_FP9}/SWFUpload.as"
+            output="${OUTPUT_DIR_FP9}/swfupload_fp9.swf"
+            locale="${LOCALE}"
+            static-rsls="true"
+            accessible="true"
+            debug="false"
+        >
+      <!--加载Flex配置文件，如果您有特殊需求（比如要保留自定义的Metadata标签，则可以设置自己定义的Flex配置文件）-->
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <!--设置源代码位置-->
+      <source-path path-element="${SOURCE_DIR_FP9}"/>
+      <!--指定最小player版本-->
+      <target-player>9.0.28</target-player>
+      <!--引用本地化的库支持-->
+      <library-path dir="${FLEX_HOME}/frameworks/locale/${LOCALE}" includes="*" append="true"/>
+    </mxmlc>
+
+  </target>
+
+</project>
